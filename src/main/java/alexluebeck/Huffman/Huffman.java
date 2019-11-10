@@ -48,12 +48,15 @@ public class Huffman {
 
 		int minLength = Integer.MAX_VALUE;
 		int maxLength = 0;
+		int sumLength = 0;
 		for (Entry<String, String> entry : map.entrySet()) {
 			maxLength = Math.max(entry.getValue().length(), maxLength);
 			minLength = Math.min(entry.getValue().length(), minLength);
+			sumLength += entry.getValue().length();
 		}
 
 		System.out.println("min encoding length: " + minLength);
 		System.out.println("max encoding length: " + maxLength);
+		System.out.println("avg encoding length: " + (sumLength / (float) map.size()));
 	}
 }
