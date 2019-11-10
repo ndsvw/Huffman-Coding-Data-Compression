@@ -1,5 +1,6 @@
 package alexluebeck.Huffman;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Map.Entry;
@@ -20,7 +21,7 @@ public class Huffman {
 		this.tree = root;
 	}
 
-	public HashMap<String, String> createEncodingTable(Node node, String encoding, HashMap<String, String> map) {
+	private HashMap<String, String> createEncodingTable(Node node, String encoding, HashMap<String, String> map) {
 		if (node.getLeft() != null) {
 			createEncodingTable(node.getLeft(), encoding + "0", map);
 		} else {
@@ -36,20 +37,23 @@ public class Huffman {
 		return map;
 	}
 	
-	public void printCharacterEncoding() {
-		HashMap<String, String> map = createEncodingTable(tree, "", new HashMap<String, String>());
-		for (Entry<String, String> entry : map.entrySet()) {
+	public HashMap<String, String> createEncodingTable() {
+		return createEncodingTable(tree, "", new HashMap<String, String>());
+	}
+	
+	public void printCharacterEncoding(HashMap<String, String> encodingTable) {
+		for (Entry<String, String> entry : encodingTable.entrySet()) {
 			System.out.println(entry.getKey() + ": " + entry.getValue());
 		}
 	}
 	
-	public void analyseEncodingTable(HashMap<String, String> map) {
-		System.out.println("size: " + map.size());
+	public void analyseEncodingTable(HashMap<String, String> encodingTable) {
+		System.out.println("size: " + encodingTable.size());
 
 		int minLength = Integer.MAX_VALUE;
 		int maxLength = 0;
 		int sumLength = 0;
-		for (Entry<String, String> entry : map.entrySet()) {
+		for (Entry<String, String> entry : encodingTable.entrySet()) {
 			maxLength = Math.max(entry.getValue().length(), maxLength);
 			minLength = Math.min(entry.getValue().length(), minLength);
 			sumLength += entry.getValue().length();
@@ -57,6 +61,6 @@ public class Huffman {
 
 		System.out.println("min encoding length: " + minLength);
 		System.out.println("max encoding length: " + maxLength);
-		System.out.println("avg encoding length: " + (sumLength / (float) map.size()));
+		System.out.println("avg encoding length: " + (sumLength / (float) encodingTable.size()));
 	}
 }
