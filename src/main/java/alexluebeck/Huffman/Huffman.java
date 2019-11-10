@@ -43,4 +43,17 @@ public class Huffman {
 		}
 	}
 	
+	public void analyseEncodingTable(HashMap<String, String> map) {
+		System.out.println("size: " + map.size());
+
+		int minLength = Integer.MAX_VALUE;
+		int maxLength = 0;
+		for (Entry<String, String> entry : map.entrySet()) {
+			maxLength = Math.max(entry.getValue().length(), maxLength);
+			minLength = Math.min(entry.getValue().length(), minLength);
+		}
+
+		System.out.println("min encoding length: " + minLength);
+		System.out.println("max encoding length: " + maxLength);
+	}
 }
