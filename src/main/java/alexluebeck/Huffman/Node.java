@@ -3,7 +3,7 @@ package alexluebeck.Huffman;
 public class Node implements Comparable<Node> {
 	private Node leftNode;
 	private Node rightNode;
-	private int freq;
+	private long freq;
 	private String characterString;
 
 	public Node(Node leftNode, Node rightNode) {
@@ -20,7 +20,7 @@ public class Node implements Comparable<Node> {
 		this.characterString = character;
 	}
 
-	public int getFreq() {
+	public long getFreq() {
 		return this.freq;
 	}
 
@@ -31,8 +31,18 @@ public class Node implements Comparable<Node> {
 	public Node getRight() {
 		return this.rightNode;
 	}
+	
+	public String getCharacter() {
+		return this.characterString;
+	}
 
 	public int compareTo(Node o) {
-		return this.getFreq() - o.getFreq();
+		if(this.getFreq() < o.getFreq()) {
+			return -1;
+		} else if (this.getFreq() > o.getFreq()) {
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }
