@@ -36,4 +36,11 @@ public class Huffman {
 		return map;
 	}
 	
+	public void printCharacterEncoding() {
+		HashMap<String, String> map = createEncodingTable(tree, "", new HashMap<String, String>());
+		for (Entry<String, String> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + ": " + entry.getValue());
+		}
+	}
+	
 }
