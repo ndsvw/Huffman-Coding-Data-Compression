@@ -19,4 +19,21 @@ public class Huffman {
 		Node root = nodeQueue.poll();
 		this.tree = root;
 	}
+
+	public HashMap<String, String> createEncodingTable(Node node, String encoding, HashMap<String, String> map) {
+		if (node.getLeft() != null) {
+			createEncodingTable(node.getLeft(), encoding + "0", map);
+		} else {
+			map.put(node.getCharacter(), encoding);
+		}
+
+		if (node.getRight() != null) {
+			createEncodingTable(node.getRight(), encoding + "1", map);
+		} else {
+			map.put(node.getCharacter(), encoding);
+		}
+
+		return map;
+	}
+	
 }
