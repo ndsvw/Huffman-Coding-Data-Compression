@@ -1,6 +1,6 @@
 package alexluebeck.Huffman;
 
-public class Node {
+public class Node implements Comparable<Node> {
 	private Node leftNode;
 	private Node rightNode;
 	private int freq;
@@ -30,5 +30,9 @@ public class Node {
 
 	public Node getRight() {
 		return this.rightNode;
+	}
+
+	public int compareTo(Node o) {
+		return this.getFreq() - o.getFreq();
 	}
 }
