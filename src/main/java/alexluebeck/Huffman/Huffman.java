@@ -9,6 +9,7 @@ public class Huffman {
 	private Node tree;
 
 	public Huffman(PriorityQueue<Node> nodeQueue) {
+		assert(nodeQueue.size() >= 1) : "At least 1 node is required";
 		while (nodeQueue.size() >= 2) {
 			Node node1 = nodeQueue.poll();
 			Node node2 = nodeQueue.poll();
