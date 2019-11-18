@@ -77,4 +77,35 @@ public class HuffmanTest {
 		assertEquals(encodingTable.get("j").length(), 3);
 	}
 
+	@Test
+	public void test2Powers() {
+		Node n1 = new Node("6", 1);
+		Node n2 = new Node("5", 2);
+		Node n3 = new Node("4", 4);
+		Node n4 = new Node("3", 8);
+		Node n5 = new Node("2", 16);
+		Node n6 = new Node("1", 32);
+		PriorityQueue<Node> pq = new PriorityQueue<Node>(Arrays.asList(n1, n2, n3, n4, n5, n6));
+		Huffman huffman = new Huffman(pq);
+		HashMap<String, String> encodingTable = huffman.createEncodingTable();
+		assertEquals(encodingTable.get("1").length(), 1);
+		assertEquals(encodingTable.get("2").length(), 2);
+		assertEquals(encodingTable.get("3").length(), 3);
+		assertEquals(encodingTable.get("4").length(), 4);
+		assertEquals(encodingTable.get("5").length(), 5);
+		assertEquals(encodingTable.get("6").length(), 5);
+	}
+
+	@Test
+	public void testEqualFreqencies() {
+		Node n1 = new Node("w", 2.2);
+		Node n2 = new Node("x", 2.2);
+		Node n3 = new Node("y", 2.2);
+		Node n4 = new Node("z", 2.2);
+		PriorityQueue<Node> pq = new PriorityQueue<Node>(Arrays.asList(n1, n2, n3, n4));
+		Huffman huffman = new Huffman(pq);
+		HashMap<String, String> encodingTable = huffman.createEncodingTable();
+		assertEquals(encodingTable.size(), 4);
+	}
+
 }
