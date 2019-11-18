@@ -39,6 +39,11 @@ public class Huffman {
 	}
 	
 	public HashMap<String, String> createEncodingTable() {
+		if(tree.getLeft() == null && tree.getRight() == null) {
+			HashMap<String, String> tmpHashMap = new HashMap<String, String>();
+			tmpHashMap.put(tree.getCharacter(), "0");
+			return tmpHashMap;
+		}
 		return createEncodingTable(tree, "", new HashMap<String, String>());
 	}
 	
