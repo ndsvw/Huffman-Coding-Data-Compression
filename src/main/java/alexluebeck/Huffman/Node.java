@@ -5,12 +5,14 @@ public class Node implements Comparable<Node> {
 	private Node rightNode;
 	private double freq;
 	private String characterString;
+	private int treeHeight;
 
 	public Node(Node leftNode, Node rightNode) {
 		this.leftNode = leftNode;
 		this.rightNode = rightNode;
 		this.freq = leftNode.getFreq() + rightNode.getFreq();
 		this.characterString = null;
+		this.treeHeight = Math.max(leftNode != null ? leftNode.treeHeight : 0, rightNode != null ? rightNode.treeHeight : 0) + 1;
 	}
 
 	public Node(String character, double freq) {
@@ -18,6 +20,7 @@ public class Node implements Comparable<Node> {
 		this.rightNode = null;
 		this.freq = freq;
 		this.characterString = character;
+		this.treeHeight = 0;
 	}
 
 	public double getFreq() {
@@ -42,7 +45,7 @@ public class Node implements Comparable<Node> {
 		} else if (this.getFreq() > o.getFreq()) {
 			return 1;
 		} else {
-			return 0;
+			return this.treeHeight - o.treeHeight;
 		}
 	}
 }
