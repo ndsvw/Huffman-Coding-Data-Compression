@@ -107,5 +107,24 @@ public class HuffmanTest {
 		HashMap<String, String> encodingTable = huffman.createEncodingTable();
 		assertEquals(encodingTable.size(), 4);
 	}
+	
+	@Test
+	public void testEqualTreeFreqencies() {
+		Node n1 = new Node("u", 10);
+		Node n2 = new Node("v", 10);
+		Node n3 = new Node("w", 60);
+		Node n4 = new Node("x", 60);
+		Node n5 = new Node("y", 20);
+		Node n6 = new Node("z", 20);
+		PriorityQueue<Node> pq = new PriorityQueue<Node>(Arrays.asList(n1, n2, n3, n4, n5, n6));
+		Huffman huffman = new Huffman(pq);
+		HashMap<String, String> encodingTable = huffman.createEncodingTable();
+		assertEquals(encodingTable.get("u").length(), 3);
+		assertEquals(encodingTable.get("v").length(), 3);
+		assertEquals(encodingTable.get("y").length(), 3);
+		assertEquals(encodingTable.get("z").length(), 3);
+		assertEquals(encodingTable.get("w").length(), 2);
+		assertEquals(encodingTable.get("x").length(), 2);
+	}
 
 }
